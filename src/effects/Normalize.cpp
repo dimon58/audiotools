@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include <omp.h>
+//#include <omp.h>
 
 #include "../utils.h"
 
@@ -27,11 +27,11 @@ inline float get_peak_level(const std::vector<float> &channel, sampleCount start
 }
 
 inline void multiply_volume(std::vector<float> &channel, sampleCount start, sampleCount end, float factor) {
-#if _MSC_VER && !__INTEL_COMPILER
-#pragma omp parallel for
-#else
-#pragma omp parallel for simd
-#endif
+//#if _MSC_VER && !__INTEL_COMPILER
+//#pragma omp parallel for
+//#else
+//#pragma omp parallel for simd
+//#endif
     for (decltype(start) i = start; i < end; ++i) {
         channel[i] *= factor;
     }
@@ -51,11 +51,11 @@ inline ChannelInfo get_channel_info(const std::vector<float> &channel, sampleCou
 
     double dc_offset_double = 0;
 
-#if _MSC_VER && !__INTEL_COMPILER
-#pragma omp parallel for reduction(max:signalMax) reduction(min:signalMin) reduction(+:dc_offset_double)
-#else
-#pragma omp parallel for simd reduction(max:signalMax) reduction(min:signalMin) reduction(+:dc_offset_double)
-#endif
+//#if _MSC_VER && !__INTEL_COMPILER
+//#pragma omp parallel for reduction(max:signalMax) reduction(min:signalMin) reduction(+:dc_offset_double)
+//#else
+//#pragma omp parallel for simd reduction(max:signalMax) reduction(min:signalMin) reduction(+:dc_offset_double)
+//#endif
     for (decltype(start) i = start; i < end; ++i) {
         signalMax = std::max(signalMax, channel[i]);
         signalMin = std::min(signalMin, channel[i]);
@@ -76,11 +76,11 @@ inline ChannelInfo get_channel_info(const std::vector<float> &channel, sampleCou
 
 inline void
 shift_and_multiply_volume(std::vector<float> &channel, sampleCount start, sampleCount end, float shift, float factor) {
-#if _MSC_VER && !__INTEL_COMPILER
-#pragma omp parallel for
-#else
-#pragma omp parallel for simd
-#endif
+//#if _MSC_VER && !__INTEL_COMPILER
+//#pragma omp parallel for
+//#else
+//#pragma omp parallel for simd
+//#endif
     for (decltype(start) i = start; i < end; ++i) {
         channel[i] = (channel[i] + shift) * factor;
     }

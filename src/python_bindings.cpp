@@ -3,7 +3,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <pybind11/stl/filesystem.h>
-#include <omp.h>
+//#include <omp.h>
 
 #include "../src/AudioFile.h"
 #include "../src/effects.h"
@@ -70,7 +70,7 @@ PYBIND11_MODULE(utils, m) {
     m.def("measure_rms_linear_from_file", &measure_rms_linear_from_file, py::arg("input_file"), "Measures linear rms from an audio file");
     m.def("measure_rms_db_from_file", &measure_rms_db_from_file, py::arg("input_file"), "Measures rms in db from an audio file");
 
-    m.def("omp_get_max_threads", &omp_get_max_threads, "Get maximum number of OpenMP threads");
-    m.def("omp_set_num_threads", &omp_set_num_threads, "Get number of threads for OpenMP");
+//    m.def("omp_get_max_threads", &omp_get_max_threads, "Get maximum number of OpenMP threads");
+//    m.def("omp_set_num_threads", &omp_set_num_threads, "Get number of threads for OpenMP");
 }
 

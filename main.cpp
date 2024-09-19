@@ -1,7 +1,7 @@
 #include <filesystem>
 #include <chrono>
 #include <iostream>
-#include <omp.h>
+//#include <omp.h>
 #include "src/AudioFile.h"
 
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     int mThresholdLevel = 200;
     int mClickWidth = 20;
 
-    std::cout << "Threads " << omp_get_max_threads() << std::endl;
+//    std::cout << "Threads " << omp_get_max_threads() << std::endl;
 
     std::cout << "Input file: " << input_file.string() << std::endl;
     std::cout << "Output file: " << output_file.string() << std::endl;

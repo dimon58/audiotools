@@ -11,8 +11,6 @@ if (MSVC)
 else ()
     set(CMAKE_CXX_FLAGS_DEBUG "-g")
     set(CMAKE_CXX_FLAGS_RELEASE "-O2")
-
-    set(ENABLE_OPENMP 1)
 endif ()
 
 include(FetchContent)
@@ -48,24 +46,24 @@ set(
 
 add_executable(${PROJECT_NAME} ${SOURCES} main.cpp)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE OpenMP::OpenMP_CXX sndfile)
+target_link_libraries(${PROJECT_NAME} PRIVATE sndfile) # OpenMP::OpenMP_CXX
 
 # Добавляем поддержку библиотеки OpenMP
 #if (NOT MSVC)
-find_package(OpenMP REQUIRED)
-if (NOT OpenMP_CXX_FOUND)
-    message(SEND_ERROR "Failed to find OpenMP.")
-    return()
-else ()
-    include_directories(${OpenMP_INCLUDE_DIRS})
-    message(STATUS "OpenMP FOUND dir is ${OpenMP_INCLUDE_DIRS}.")
-endif ()
-# Дополнительный флаг, необходим для функционирования библиотеки
-if (MSVC)
-    set(CMAKE_CXX_FLAGS "/openmp:llvm")
-else ()
-    set(CMAKE_CXX_FLAGS "-fopenmp")
-endif ()
+#find_package(OpenMP REQUIRED)
+#if (NOT OpenMP_CXX_FOUND)
+#    message(SEND_ERROR "Failed to find OpenMP.")
+#    return()
+#else ()
+#    include_directories(${OpenMP_INCLUDE_DIRS})
+#    message(STATUS "OpenMP FOUND dir is ${OpenMP_INCLUDE_DIRS}.")
+#endif ()
+## Дополнительный флаг, необходим для функционирования библиотеки
+#if (MSVC)
+#    set(CMAKE_CXX_FLAGS "/openmp:llvm")
+#else ()
+#    set(CMAKE_CXX_FLAGS "-fopenmp")
+#endif ()
 
 
 # ---------------------------- Биндинги для питона ---------------------------- #
@@ -99,7 +97,7 @@ set(PYTHON_MODULES wavfile utils)
 
 foreach (PYTHON_MODULE ${PYTHON_MODULES})
     pybind11_add_module(${PYTHON_MODULE} MODULE ${PYTHON_SOURCES} ${SOURCES})
-    target_link_libraries(${PYTHON_MODULE} PRIVATE OpenMP::OpenMP_CXX sndfile)
+    target_link_libraries(${PYTHON_MODULE} PRIVATE sndfile) # OpenMP::OpenMP_CXX
     install(TARGETS ${PYTHON_MODULE} LIBRARY DESTINATION audiotools COMPONENT pylib)
 endforeach ()
 
