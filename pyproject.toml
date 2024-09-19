@@ -2,7 +2,7 @@
 name = "pyaudiotoolslib"
 version = "0.0.1"
 description = "Some tools for processing audio in C++ with bindings for python"
-authors = ["Dmitry S."]
+authors = [{name = "Dmitry S."}]
 license = {file = "LICENSE"}
 readme = "readme.md"
 requires-python = ">=3.11"
