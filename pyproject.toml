@@ -1,5 +1,5 @@
 [project]
-name = "audiotools"
+name = "pyaudiotoolslib"
 version = "0.0.1"
 
 [build-system]

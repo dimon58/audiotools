@@ -71,7 +71,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE sndfile) # OpenMP::OpenMP_CXX
 # ---------------------------- Биндинги для питона ---------------------------- #
 
 if (NOT SKBUILD_PROJECT_NAME)
-    set(PYTHON_PACKAGE audiotools)
+    set(PYTHON_PACKAGE pyaudiotoolslib)
 else ()
     set(PYTHON_PACKAGE ${SKBUILD_PROJECT_NAME})
 endif ()
@@ -100,7 +100,7 @@ set(PYTHON_MODULES wavfile utils)
 foreach (PYTHON_MODULE ${PYTHON_MODULES})
     pybind11_add_module(${PYTHON_MODULE} MODULE ${PYTHON_SOURCES} ${SOURCES})
     target_link_libraries(${PYTHON_MODULE} PRIVATE sndfile) # OpenMP::OpenMP_CXX
-    install(TARGETS ${PYTHON_MODULE} LIBRARY DESTINATION audiotools COMPONENT pylib)
+    install(TARGETS ${PYTHON_MODULE} LIBRARY DESTINATION pyaudiotoolslib COMPONENT pylib)
 endforeach ()
 
 get_property(install_components GLOBAL PROPERTY COMPONENTS)
