@@ -3,6 +3,8 @@ project(AudioToolsLib)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)  # -fPIC
+
 if (MSVC)
     set(CMAKE_CXX_FLAGS_RELEASE "/EHsc /O2 /GL")
 
