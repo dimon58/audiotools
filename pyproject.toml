@@ -74,14 +74,11 @@ exclude = [
     "site-packages",
     "venv",
     "__init__.py",
-    "migrations/versions",
-    "service/tochka",
     "dev",
     "build",
     "cmake-build-debug",
     "cmake-build-release",
     "lib",
-    "setup.py",
 ]
 
 # Same as Black.
