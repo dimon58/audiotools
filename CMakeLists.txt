@@ -6,13 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)  # -fPIC
 
 if (MSVC)
-    set(CMAKE_CXX_FLAGS_RELEASE "/EHsc /O2 /GL")
+    set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ob2 /DNDEBUG /EHsc /GL")
 
     # Фикс ошибок сборки
     set(HAVE_GETTIMEOFDAY 0)
 else ()
-    set(CMAKE_CXX_FLAGS_DEBUG "-g")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
 endif ()
 
 include(FetchContent)
