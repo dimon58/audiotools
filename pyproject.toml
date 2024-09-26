@@ -1,6 +1,6 @@
 [project]
 name = "pyaudiotoolslib"
-version = "0.0.1"
+version = "0.0.2"
 description = "Some tools for processing audio in C++ with bindings for python"
 authors = [{name = "Dmitry S."}]
 license = {file = "LICENSE"}

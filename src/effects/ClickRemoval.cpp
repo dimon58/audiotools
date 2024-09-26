@@ -17,8 +17,9 @@ EffectClickRemoval::EffectClickRemoval(int mThresholdLevel, int mClickWidth) :
 EffectClickRemoval::~EffectClickRemoval() = default;
 
 
-bool EffectClickRemoval::ProcessOne(int count, WaveChannel &track, size_t start, size_t len) {
+bool EffectClickRemoval::ProcessOne(int count, WaveChannel &track, size_t start, size_t len, bool throw_exception) {
     if (len <= windowSize / 2) {
+        if (!throw_exception) return false;
         std::stringstream ss;
         ss << "Selection must be larger than " << windowSize / 2 << " samples";
         throw std::length_error(ss.str());

@@ -33,7 +33,8 @@ PYBIND11_MODULE(wavfile, m) {
                     "remove_clicks",
                     &AudioFile::remove_clicks,
                     py::arg("threshold_level") = 200,
-                    py::arg("click_width") = 20
+                    py::arg("click_width") = 20,
+                    py::arg("throw_exception") = false
             )
             .def(
                     "remove_all_channels_except",
@@ -65,6 +66,7 @@ PYBIND11_MODULE(utils, m) {
           py::arg("output_file"),
           py::arg("threshold_level") = 200,
           py::arg("click_width") = 20,
+          py::arg("throw_exception") = false,
           "Remove clicks from an audio file.");
 
     m.def("measure_rms_linear_from_file", &measure_rms_linear_from_file, py::arg("input_file"), "Measures linear rms from an audio file");

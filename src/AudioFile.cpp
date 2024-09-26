@@ -137,7 +137,7 @@ AudioFile &AudioFile::normalize(double mPeakLevel, bool mRemoveDC, bool mStereoI
     return *this;
 }
 
-AudioFile &AudioFile::remove_clicks(int mThresholdLevel, int mClickWidth) {
+AudioFile &AudioFile::remove_clicks(int mThresholdLevel, int mClickWidth, bool throw_exception) {
 
 
     ensure_in_range(mThresholdLevel, mThresholdLevelMin, mThresholdLevelMax, "mThresholdLevel");
@@ -147,7 +147,7 @@ AudioFile &AudioFile::remove_clicks(int mThresholdLevel, int mClickWidth) {
 
     for (int channel = 0; channel < sfInfo.channels; ++channel) {
         WaveChannel wave_channel(channels[channel].data(), channels[channel].size());
-        effect_click_removal.ProcessOne(channel, wave_channel, 0, channels[channel].size());
+        effect_click_removal.ProcessOne(channel, wave_channel, 0, channels[channel].size(), throw_exception);
     }
 
     return *this;

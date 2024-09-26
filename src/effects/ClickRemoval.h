@@ -13,7 +13,7 @@ public:
 
     virtual ~EffectClickRemoval();
 
-    bool ProcessOne(int count, WaveChannel &track, sampleCount start, sampleCount len);
+    bool ProcessOne(int count, WaveChannel &track, sampleCount start, sampleCount len, bool throw_exception = false);
 
     bool RemoveClicks(size_t len, float *buffer);
 

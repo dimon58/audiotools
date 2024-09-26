@@ -13,7 +13,7 @@ public:
 
     AudioFile& normalize(double mPeakLevel, bool mRemoveDC, bool mStereoIndependent);
 
-    AudioFile& remove_clicks(int mThresholdLevel, int mClickWidth);
+    AudioFile& remove_clicks(int mThresholdLevel, int mClickWidth, bool throw_exception = false);
 
     AudioFile& remove_all_channels_except(int channel);
 
